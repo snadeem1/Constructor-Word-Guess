@@ -16,3 +16,25 @@ word.prototype.checkLetters = function(){
     }
     return true;
 }
+word.prototype.findLetter = function(letter){
+	var lowerLetter = letter.toLowerCase();
+	if (this.guesses.indexOf(lowerLetter) != -1) {
+		return console.log('\nDuplicate letter, try again.');
+    } 
+    this.guesses += lowerLetter; 
+	for(var i=0; i<this.letters.length;i++){
+		if(this.letters[i].value.toLowerCase() == lowerLetter){
+		this.letters[i].show = true;
+		}
+	}
+};
+
+word.prototype.toString = function(){
+    var output = '';
+    for(var i=0; i<this.letters.length; i++){
+      output += this.letters[i].printInfo();
+    }
+    return output;
+  }
+  
+  exports.wordCons = word;
